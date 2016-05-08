@@ -42,7 +42,10 @@ for count=1:300
     ResNeg{count} = Class;
 end
 
-countPos
-countNeg
+
+Pos = [num2str(countPos), ' from 1126 = ', num2str((countPos/1126)*100), '%']
+Neg = [num2str(countNeg), ' from 300 = ', num2str((countNeg/300)*100), '%']
+
+Res = [num2str(countPos + countNeg), ' from 1426 = ', num2str(((countPos + countNeg)/1426)*100), '%']
 
 toc
