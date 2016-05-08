@@ -109,11 +109,11 @@ for num=101:130
 
 end
  
-countPos0
-countPos4
-countPos10
-countPos12
-countPos15
+countPos0 = [num2str(countPos0), ' from 30']
+countPos4 = [num2str(countPos4), ' from 100']
+countPos10 = [num2str(countPos10), ' from 30']
+countPos12 = [num2str(countPos12), ' from 400']
+countPos15 = [num2str(countPos15), ' from 30']
 
 
 toc

@@ -1,3 +1,10 @@
+close all
+clear all
+clc
+
+
+tic 
+
 %my_base = zeros(3434,118);
 
 
@@ -344,3 +351,5 @@
 % 
 % %% обучение
 % lbp_rgb = svmtrain(my_base,ms);
+
+toc

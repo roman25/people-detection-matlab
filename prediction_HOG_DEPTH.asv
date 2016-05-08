@@ -20,77 +20,77 @@ countPos12 = 0;
 countPos15 = 0;
 
 %% reading images to matrix
-% for num=1:30
-%     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\0\Depth_', num2str(num), '.png']);
-%     I = I(50:240, 120:200); 
-%   
-%     I = imresize(I, [128 64]);
-%       
-%     I = double(I);
-%     features = extractHOGFeatures(I);
-%     
-%     Class = svmclassify(crop_HOG_Depth,features);
-%     if (strcmp(Class, 'person')==1)
-%        countPos0 = countPos0+1;
-%     end
-%     
-%     ResPos0{num} = Class;
-% 
-% end
+for num=1:30
+    I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\0\Depth_', num2str(num), '.png']);
+    I = I(50:240, 120:200); 
+  
+    I = imresize(I, [128 64]);
+      
+    I = double(I);
+    features = extractHOGFeatures(I);
+    
+    Class = svmclassify(crop_HOG_Depth,features);
+    if (strcmp(Class, 'person')==1)
+       countPos0 = countPos0+1;
+    end
+    
+    ResPos0{num} = Class;
 
-% for num=101:200
-%     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\4\Depth_', num2str(num), '.png']);
-%     I = I(80:240, 120:220); 
-%   
-%     I = imresize(I, [128 64]);
-%   
-%     I = double(I);
-%     features = extractHOGFeatures(I);
-%     
-%     Class = svmclassify(crop_HOG_Depth,features);
-%     if (strcmp(Class, 'person')==1)
-%        countPos4 = countPos4+1;
-%     end
-%     
-%     ResPos4{num} = Class;
-% 
-% end
+end
 
-% for num=1:30
-%     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\10\Depth_', num2str(num), '.png']);
-%     I = I(80:240, 120:220); 
-%   
-%     I = imresize(I, [128 64]);
-%       
-%     I = double(I);
-%     features = extractHOGFeatures(I);
-%     
-%     Class = svmclassify(crop_HOG_Depth,features);
-%     if (strcmp(Class, 'person')==1)
-%        countPos10 = countPos10+1;
-%     end
-%     
-%     ResPos10{num} = Class;
-% 
-% end
+for num=101:200
+    I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\4\Depth_', num2str(num), '.png']);
+    I = I(80:240, 120:220); 
+  
+    I = imresize(I, [128 64]);
+  
+    I = double(I);
+    features = extractHOGFeatures(I);
+    
+    Class = svmclassify(crop_HOG_Depth,features);
+    if (strcmp(Class, 'person')==1)
+       countPos4 = countPos4+1;
+    end
+    
+    ResPos4{num} = Class;
 
-% for num=301:700
-%     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\12\Depth_', num2str(num), '.png']);
-%     I = I(50:240, 90:270); 
-%   
-%     I = imresize(I, [128 64]);
-%       
-%     I = double(I);
-%     features = extractHOGFeatures(I);
-%     
-%     Class = svmclassify(crop_HOG_Depth,features);
-%     if (strcmp(Class, 'person')==1)
-%        countPos12 = countPos12+1;
-%     end
-%     
-%     ResPos12{num} = Class;
-% 
-% end
+end
+
+for num=1:30
+    I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\10\Depth_', num2str(num), '.png']);
+    I = I(80:240, 120:220); 
+  
+    I = imresize(I, [128 64]);
+      
+    I = double(I);
+    features = extractHOGFeatures(I);
+    
+    Class = svmclassify(crop_HOG_Depth,features);
+    if (strcmp(Class, 'person')==1)
+       countPos10 = countPos10+1;
+    end
+    
+    ResPos10{num} = Class;
+
+end
+
+for num=301:700
+    I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\12\Depth_', num2str(num), '.png']);
+    I = I(50:240, 90:270); 
+  
+    I = imresize(I, [128 64]);
+      
+    I = double(I);
+    features = extractHOGFeatures(I);
+    
+    Class = svmclassify(crop_HOG_Depth,features);
+    if (strcmp(Class, 'person')==1)
+       countPos12 = countPos12+1;
+    end
+    
+    ResPos12{num} = Class;
+
+end
 
 for num=101:130
     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\15\Depth_', num2str(num), '.png']);
@@ -109,11 +109,11 @@ for num=101:130
 
 end
  
- countPos0
-% countPos4
-% countPos10
-% countPos12
-% countPos15
+countPos0 = [num2str(countPos0), ' from 30 = ', countPos0/30 *]
+countPos4 = [num2str(countPos4), ' from 100']
+countPos10 = [num2str(countPos10), ' from 30']
+countPos12 = [num2str(countPos12), ' from 400']
+countPos15 = [num2str(countPos15), ' from 30']
 
 
 toc
