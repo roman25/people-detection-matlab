@@ -4,7 +4,7 @@ clc
 
 tic 
 
-%% классификация
+%% classification
 load('hogRGB');
 
 ResPos={};
@@ -14,11 +14,10 @@ countPos = 0;
 countNeg = 0;
 
 
-%% считывание всех изображений в массив
-
+%% reading images to matrix
 for num=1:1126
     I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\test_64x128_H96\pos\0 (', num2str(num), ').png']);
-    I = imresize(I, [64 128]);
+    I = imresize(I, [128 64]);
     features = extractHOGFeatures(I);
     
     Class = svmclassify(hogRGB,features);
@@ -32,7 +31,7 @@ end
 
 for count=1:300
     I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\test_64x128_H96\neg\0 (', num2str(count), ').png']);
-    I = imresize(I, [64 128]);
+    I = imresize(I, [128 64]);
     features = extractHOGFeatures(I);
     
     Class = svmclassify(hogRGB,features);
