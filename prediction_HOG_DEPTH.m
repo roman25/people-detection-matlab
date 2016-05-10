@@ -5,7 +5,7 @@ clc
 tic 
 
 %% classification
-load('crop_HOG_Depth');
+load('car_HOG_Depth');
 
 ResPos0={};
 ResPos4={};
@@ -19,6 +19,8 @@ countPos10 = 0;
 countPos12 = 0;
 countPos15 = 0;
 
+myStruct = car_HOG_Depth;
+
 %% reading images to matrix
 for num=1:30
     I = imread(['C:\Users\Домашний\Desktop\folderTest 31-03\posDepth\0\Depth_', num2str(num), '.png']);
@@ -29,7 +31,7 @@ for num=1:30
     I = double(I);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(crop_HOG_Depth,features);
+    Class = svmclassify(myStruct,features);
     if (strcmp(Class, 'person')==1)
        countPos0 = countPos0+1;
     end
@@ -47,7 +49,7 @@ for num=101:200
     I = double(I);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(crop_HOG_Depth,features);
+    Class = svmclassify(myStruct,features);
     if (strcmp(Class, 'person')==1)
        countPos4 = countPos4+1;
     end
@@ -65,7 +67,7 @@ for num=1:30
     I = double(I);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(crop_HOG_Depth,features);
+    Class = svmclassify(myStruct,features);
     if (strcmp(Class, 'person')==1)
        countPos10 = countPos10+1;
     end
@@ -83,7 +85,7 @@ for num=301:700
     I = double(I);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(crop_HOG_Depth,features);
+    Class = svmclassify(myStruct,features);
     if (strcmp(Class, 'person')==1)
        countPos12 = countPos12+1;
     end
@@ -100,7 +102,7 @@ for num=101:130
     I = double(I);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(crop_HOG_Depth,features);
+    Class = svmclassify(myStruct,features);
     if (strcmp(Class, 'person')==1)
        countPos15 = countPos15+1;
     end
