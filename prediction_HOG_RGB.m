@@ -5,7 +5,7 @@ clc
 tic 
 
 %% classification
-load('hogRGB');
+load('apple_ball_HOG_RGB');
 
 ResPos={};
 ResNeg={};
@@ -13,15 +13,15 @@ ResNeg={};
 countPos = 0;
 countNeg = 0;
 
-
+myStruct = apple_ball_HOG_RGB;
 %% reading images to matrix
-for num=1:1126
-    I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\test_64x128_H96\pos\0 (', num2str(num), ').png']);
-    I = imresize(I, [128 64]);
+for num=1:20
+    I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\apple\apple_RGB\0 (', num2str(num), ').jpg']);
+    I = imresize(I, [70 70]);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(hogRGB,features);
-    if (strcmp(Class, 'person')==1)
+    Class = svmclassify(myStruct,features);
+    if (strcmp(Class, 'apple')==1)
        countPos = countPos+1;
     end
     
@@ -29,13 +29,13 @@ for num=1:1126
 
 end
 
-for count=1:300
-    I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\test_64x128_H96\neg\0 (', num2str(count), ').png']);
-    I = imresize(I, [128 64]);
+for count=1:20
+    I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\ball\ball_RGB\0 (', num2str(num), ').jpg']);
+    I = imresize(I, [70 70]);
     features = extractHOGFeatures(I);
     
-    Class = svmclassify(hogRGB,features);
-    if (strcmp(Class, 'any')==1)
+    Class = svmclassify(myStruct,features);
+    if (strcmp(Class, 'ball')==1)
        countNeg = countNeg+1;
     end
     
@@ -43,9 +43,7 @@ for count=1:300
 end
 
 
-Pos = [num2str(countPos), ' from 1126 = ', num2str((countPos/1126)*100), '%']
-Neg = [num2str(countNeg), ' from 300 = ', num2str((countNeg/300)*100), '%']
-
-Res = [num2str(countPos + countNeg), ' from 1426 = ', num2str(((countPos + countNeg)/1426)*100), '%']
+apple = [num2str(countPos), ' from 20 = ', num2str((countPos/20)*100), '%']
+ball = [num2str(countNeg), ' from 20 = ', num2str((countNeg/20)*100), '%']
 
 toc
