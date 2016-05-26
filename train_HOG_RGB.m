@@ -7,38 +7,40 @@ tic
 %% reading images to matrix
 picture = 0;
 
-for num=1:2416
+for num=1:30
     picture = picture + 1;
-    I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\train_64x128_H96\pos\0 (', num2str(num), ').png']);
-    I = imresize(I, [128 64]);
+    I = imread(['C:\Users\Домашний\Desktop\data\chairs\rgb\', num2str(num), '.jpg']);
+    I = double(I);
+    %I = imresize(I, [128 64]);
     features = extractHOGFeatures(I);
     my_base(picture,:) = features;
 
 end
 
-for count=1:912
+for count=1:30
     picture = picture + 1;
-    I = imread(['C:\Users\Домашний\Desktop\INRIAPerson\train_64x128_H96\neg\0 (', num2str(count), ').png']);
-    I = imresize(I, [128 64]);
+    I = imread(['C:\Users\Домашний\Desktop\data\motos\rgb\', num2str(count), '.jpg']);
+    I = double(I);
+   % I = imresize(I, [128 64]);
     features = extractHOGFeatures(I);
     my_base(picture,:) = features;
 
 end
 
 %% create names of groups
-ms = {3328,1};
-for num = 1:2416;
-    ms{num} = 'person';
+ms = {60,1};
+for num = 1:30;
+    ms{num} = 'chair';
 end
 
-for num = 2417:3328;
-    ms{num} = 'any';
+for num = 31:60;
+    ms{num} = 'moto';
 end
 
 ms = ms';
 
 %% training
-hogRGB = svmtrain(my_base,ms);
+chair_moto_rgb_hog = svmtrain(my_base,ms);
 
 
 

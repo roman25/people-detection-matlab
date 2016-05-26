@@ -5,40 +5,43 @@ clc
 tic 
 
 %% classification
-load('apple_ball_HOG_Depth');
+load('chair_moto_depth_hog');
 
 ResPos0={};
+ResPos1={};
 
-countPos0 = 0;
-countPos4 = 0;
-countPos10 = 0;
-countPos12 = 0;
-countPos15 = 0;
+countPosA = 0;
+countPosB = 0;
 
-myStruct = apple_ball_HOG_Depth;
+myStruct = chair_moto_depth_hog;
 
 %% reading images to matrix
-for num=1:200
-    I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\apple\apple_5\apple_5_4_', num2str(num), '_depthcrop.png']);
-    
-  
-    I = imresize(I, [70 70]);
-      
+for num=31:80
+    I = imread(['C:\Users\Домашний\Desktop\data\chairs\depth\', num2str(num), '.png']);
+    %I = imresize(I, [70 70]); 
     I = double(I);
     features = extractHOGFeatures(I);
-    
     Class = svmclassify(myStruct,features);
-    if (strcmp(Class, 'apple')==1)
-       countPos0 = countPos0+1;
+    if (strcmp(Class, 'chair')==1)
+       countPosA = countPosA+1;
     end
-    
     ResPos0{num} = Class;
-
 end
 
 
- 
+for count=31:80
+    I = imread(['C:\Users\Домашний\Desktop\data\motos\depth\', num2str(count), '.png']);
+    %I = imresize(I, [70 70]); 
+    I = double(I);
+    features = extractHOGFeatures(I);
+    Class = svmclassify(myStruct,features);
+    if (strcmp(Class, 'moto')==1)
+       countPosB = countPosB+1;
+    end
+    ResPos1{num} = Class;
+end
 
-Pos0 = [num2str(countPos0), ' from ', num2str(num), ' = ', num2str((countPos0/num)*100), '%']
+ch = [num2str(countPosA), ' from ', num2str(50), ' = ', num2str((countPosA/50)*100), '%']
+m = [num2str(countPosB), ' from ', num2str(50), ' = ', num2str((countPosB/50)*100), '%']
 
 toc

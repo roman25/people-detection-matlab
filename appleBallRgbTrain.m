@@ -6,7 +6,7 @@ tic
 
 picture = 0;
 
-
+% apple examples
 for num=1:30
     picture = picture + 1;
     I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\apple\apple_RGB\rgbTrain\0 (', num2str(num), ').jpg']);
@@ -16,12 +16,8 @@ for num=1:30
     my_base(picture,:) = features;
 
 end
-
-
-
-
     
-% neg examples
+% ball examples
 for num=1:30
     picture = picture + 1;
     I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\ball\ball_RGB\rgbTrain\0 (', num2str(num), ').jpg']);
@@ -31,10 +27,6 @@ for num=1:30
     my_base(picture,:) = features;
 
 end
-
-
-
-
 
 
 %% создание имён групп

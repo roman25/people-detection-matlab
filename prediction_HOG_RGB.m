@@ -5,7 +5,7 @@ clc
 tic 
 
 %% classification
-load('apple_ball_HOG_RGB');
+load('chair_moto_rgb_hog');
 
 ResPos={};
 ResNeg={};
@@ -13,15 +13,15 @@ ResNeg={};
 countPos = 0;
 countNeg = 0;
 
-myStruct = apple_ball_HOG_RGB;
+myStruct = chair_moto_rgb_hog;
 %% reading images to matrix
-for num=1:20
-    I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\apple\apple_RGB\0 (', num2str(num), ').jpg']);
-    I = imresize(I, [70 70]);
+for num=31:80
+    I = imread(['C:\Users\Домашний\Desktop\data\chairs\rgb\', num2str(num), '.jpg']);
+    %I = imresize(I, [70 70]);
     features = extractHOGFeatures(I);
     
     Class = svmclassify(myStruct,features);
-    if (strcmp(Class, 'apple')==1)
+    if (strcmp(Class, 'chair')==1)
        countPos = countPos+1;
     end
     
@@ -29,13 +29,13 @@ for num=1:20
 
 end
 
-for count=1:20
-    I = imread(['C:\Users\Домашний\Desktop\rgbd-dataset\ball\ball_RGB\0 (', num2str(num), ').jpg']);
-    I = imresize(I, [70 70]);
+for count=31:80
+    I = imread(['C:\Users\Домашний\Desktop\data\motos\rgb\', num2str(count), '.jpg']);
+    %I = imresize(I, [70 70]);
     features = extractHOGFeatures(I);
     
     Class = svmclassify(myStruct,features);
-    if (strcmp(Class, 'ball')==1)
+    if (strcmp(Class, 'moto')==1)
        countNeg = countNeg+1;
     end
     
@@ -43,7 +43,7 @@ for count=1:20
 end
 
 
-apple = [num2str(countPos), ' from 20 = ', num2str((countPos/20)*100), '%']
-ball = [num2str(countNeg), ' from 20 = ', num2str((countNeg/20)*100), '%']
+chair = [num2str(countPos), ' from 50 = ', num2str((countPos/50)*100), '%']
+moto = [num2str(countNeg), ' from 50 = ', num2str((countNeg/50)*100), '%']
 
 toc
